@@ -2,7 +2,7 @@ package com.andreev.tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pojoObjects.responses.GetListResourceResponseBody;
+import com.andreev.pojoObjects.responses.GetListResourceResponseBody;
 
 import static io.qameta.allure.Allure.attachment;
 import static io.qameta.allure.Allure.step;
@@ -10,12 +10,12 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("Метод GET /api/unknown")
+@DisplayName("Получение списка юзеров методом GET /api/unknown")
 public class GetListResourceTest {
     @DisplayName("Статус код 200 и проверка полей в теле ответа")
     @Test
     void checkMethodGetListResource() {
-        step("Вызываем метод GET /api/unknown", () -> {
+        step("Вызываем метод GET /api/unknown и проверяем код ответа 200", () -> {
             GetListResourceResponseBody response = given()
                     .contentType(JSON)
                     .baseUri(Specifications.BASE_URI)

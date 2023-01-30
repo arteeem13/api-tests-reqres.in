@@ -1,9 +1,9 @@
-package pojoObjects.requests;
+package com.andreev.pojoObjects.requests;
 
 import lombok.Data;
 
 @Data
-public class UpdateRequestBody {
+public class PatchRequestBody {
     private String name;
     private String job;
 }

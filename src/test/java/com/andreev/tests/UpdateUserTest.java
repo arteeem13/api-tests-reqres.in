@@ -2,8 +2,8 @@ package com.andreev.tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pojoObjects.requests.UpdateRequestBody;
-import pojoObjects.responses.UpdateResponseBody;
+import com.andreev.pojoObjects.requests.UpdateRequestBody;
+import com.andreev.pojoObjects.responses.UpdateResponseBody;
 
 import static io.qameta.allure.Allure.attachment;
 import static io.qameta.allure.Allure.step;
@@ -11,10 +11,10 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("Метод PUT /api/users/{id}")
-public class PutUpdateTest {
-    private final String name = "morpheus";
-    private final String job = "zion resident";
+@DisplayName("Обновление юзера методом PUT /api/users/{id}")
+public class UpdateUserTest {
+    private final String name = "Artem";
+    private final String job = "QC-engineer";
 
     UpdateRequestBody request = new UpdateRequestBody();
 
@@ -24,7 +24,7 @@ public class PutUpdateTest {
         request.setName(name);
         request.setJob(job);
 
-        step("Вызываем метод PUT /api/users/2", () -> {
+        step("Вызываем метод PUT /api/users/2 и проверяем код ответа 200", () -> {
             UpdateResponseBody response = given()
                     .contentType(JSON)
                     .body(request)

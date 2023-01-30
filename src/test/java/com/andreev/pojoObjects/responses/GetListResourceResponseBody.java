@@ -1,4 +1,4 @@
-package pojoObjects.responses;
+package com.andreev.pojoObjects.responses;
 
 import lombok.Data;
 
