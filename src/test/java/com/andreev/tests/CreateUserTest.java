@@ -2,10 +2,11 @@ package com.andreev.tests;
 
 import com.andreev.pojoObjects.requests.CreateRequestBody;
 import com.andreev.pojoObjects.responses.CreateResponseBody;
+import com.andreev.specifications.Specifications;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static io.qameta.allure.Allure.attachment;
+import static com.andreev.filters.CustomLogFilter.customLogFilter;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
@@ -26,6 +27,7 @@ public class CreateUserTest {
 
         step("Вызываем метод POST /api/users и проверяем код ответа 201", () -> {
             CreateResponseBody response = given()
+                    .filter(customLogFilter().withCustomTemplates())
                     .contentType(JSON)
                     .body(request)
                     .baseUri(Specifications.BASE_URI)
@@ -47,7 +49,6 @@ public class CreateUserTest {
             step("В теле ответа есть поле 'createdAt', которое не пустое", () -> {
                 assertThat(response.getCreatedAt()).isNotEmpty();
             });
-            attachment("Tело ответа: ", response + "");
         });
     }
 }

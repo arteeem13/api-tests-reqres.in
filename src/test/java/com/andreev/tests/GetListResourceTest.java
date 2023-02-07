@@ -1,10 +1,11 @@
 package com.andreev.tests;
 
+import com.andreev.pojoObjects.responses.GetListResourceResponseBody;
+import com.andreev.specifications.Specifications;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import com.andreev.pojoObjects.responses.GetListResourceResponseBody;
 
-import static io.qameta.allure.Allure.attachment;
+import static com.andreev.filters.CustomLogFilter.customLogFilter;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
@@ -17,6 +18,7 @@ public class GetListResourceTest {
     void checkMethodGetListResource() {
         step("Вызываем метод GET /api/unknown и проверяем код ответа 200", () -> {
             GetListResourceResponseBody response = given()
+                    .filter(customLogFilter().withCustomTemplates())
                     .contentType(JSON)
                     .baseUri(Specifications.BASE_URI)
                     .basePath("/api/unknown")
@@ -44,7 +46,6 @@ public class GetListResourceTest {
             step("Cсылка поддержки: 'https://reqres.in/#support-heading'", () -> {
                 assertThat(response.getSupport().getUrl()).isEqualTo("https://reqres.in/#support-heading");
             });
-            attachment("Tело ответа: ", response + "");
         });
     }
 }

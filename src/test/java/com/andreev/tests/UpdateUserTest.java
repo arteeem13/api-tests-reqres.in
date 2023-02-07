@@ -1,11 +1,12 @@
 package com.andreev.tests;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import com.andreev.pojoObjects.requests.UpdateRequestBody;
 import com.andreev.pojoObjects.responses.UpdateResponseBody;
+import com.andreev.specifications.Specifications;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import static io.qameta.allure.Allure.attachment;
+import static com.andreev.filters.CustomLogFilter.customLogFilter;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
@@ -26,6 +27,7 @@ public class UpdateUserTest {
 
         step("Вызываем метод PUT /api/users/2 и проверяем код ответа 200", () -> {
             UpdateResponseBody response = given()
+                    .filter(customLogFilter().withCustomTemplates())
                     .contentType(JSON)
                     .body(request)
                     .baseUri(Specifications.BASE_URI)
@@ -44,7 +46,6 @@ public class UpdateUserTest {
             step("В теле ответа есть поле 'updatedAt', которое не пустое", () -> {
                 assertThat(response.getUpdatedAt()).isNotEmpty();
             });
-            attachment("Tело ответа: ", response + "");
         });
     }
 }
