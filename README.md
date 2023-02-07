@@ -6,4 +6,11 @@
 ### :heavy_check_mark: отчетность allure
 ### :heavy_check_mark: отображения аттачментов в отчете по специальному шаблону
 ###
-![allure-report](src/test/resources/img/allure.png)
+![allure-report](src/test/resources/img/allure-report.png)
+###
+### :heavy_check_mark: сделан автоматический запуск через jenkins
+### :heavy_check_mark: добавлена интеграция с Allure TestOps
+###
+![jenkins](src/test/resources/img/jenkins.png)
+###
+![allure_testOps](src/test/resources/img/allure_testOps.png)
