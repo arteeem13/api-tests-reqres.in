@@ -1,6 +1,6 @@
 package com.andreev.tests;
 
-import com.andreev.specifications.Specifications;
+import com.andreev.specifications.BaseData;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,24 +10,23 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("Удаление юзера методом DELETE /api/users/2")
-public class DeleteUserTest {
-    @DisplayName("Статус код 204 и пустое тело ответа")
+@DisplayName("Deleting user with method DELETE /api/users/2")
+public class DeleteUserTest extends BaseData {
+    @DisplayName("Checking status-code 204 and empty response body")
     @Test
     void checkMethodGetListResource() {
-        step("Вызываем метод DELETE /api/users/2 и проверяем код ответа 204", () -> {
+        step("Calling method DELETE /api/users/2 and checking response code 204", () -> {
             Response response = given()
                     .filter(customLogFilter().withCustomTemplates())
-                    .baseUri(Specifications.BASE_URI)
+                    .baseUri(BaseData.BASE_URI)
                     .basePath("/api/users/2")
                     .when().log().method().log().uri().log().body().delete()
                     .then()
                     .statusCode(204).log().status()
                     .log().body().extract().response();
 
-            step("Тело ответа пустое", () -> {
-                assertThat(response.asString()).isEmpty();
-            });
+            step("Response is empty", () ->
+                    assertThat(response.asString()).isEmpty());
         });
     }
 }

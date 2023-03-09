@@ -1,15 +1,15 @@
-## ***В данном проекте:***
-#### :heavy_check_mark: написаны api тесты на методы reqres.in
-#### :heavy_check_mark: pojo классы для боди реквестов и респонсов
-#### :heavy_check_mark: добавлены степы
-#### :heavy_check_mark: добавлены аттачменты запроса и ответа
-#### :heavy_check_mark: отчетность allure
-#### :heavy_check_mark: отображения аттачментов в отчете по специальному шаблону
+## ***In this project done:***
+#### :heavy_check_mark: api-tests on methods reqres.in
+#### :heavy_check_mark: pojo-classes for request and response bodies
+#### :heavy_check_mark: steps
+#### :heavy_check_mark: attachments for requests and responses
+#### :heavy_check_mark: allure-reports
+#### :heavy_check_mark: visualizing attachments in reports on special sample
 ###
 ![allure-report](src/test/resources/img/allure-report.png)
 ###
-#### :heavy_check_mark: сделан автоматический запуск через jenkins
-#### :heavy_check_mark: добавлена интеграция с Allure TestOps
+#### :heavy_check_mark: automatic runner over jenkins
+#### :heavy_check_mark: integration with Allure TestOps
 ###
 ![jenkins](src/test/resources/img/jenkins.png)
 ###
